@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>System2 Demo</title>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+  <main class="container">
+    <h1>System2 Demo</h1>
+
+    <section class="card">
+      <h2>Index</h2>
+      <p>Current chunk count: <strong>{{ index_size }}</strong></p>
+
+      <form hx-post="/upload" hx-target="#upload-result" hx-swap="innerHTML" enctype="multipart/form-data">
+        <label>Upload a PDF/TXT/MD to add to the index:</label>
+        <input type="file" name="file" required />
+        <button type="submit">Upload &amp; Ingest</button>
+      </form>
+      <div id="upload-result" class="muted"></div>
+    </section>
+
+    <section class="card">
+      <h2>Ask</h2>
+      <form hx-post="/ask" hx-target="#answer" hx-swap="innerHTML">
+        <label>Question</label>
+        <input type="text" name="question" placeholder="Ask something that requires evidence…" required />
+        <button type="submit">Run Analyst → Critic → Verify → Sample</button>
+      </form>
+      <div id="answer"></div>
+    </section>
+
+    <footer class="muted small">
+      <p>
+        This demo enforces evidence quotes deterministically and labels numeric uncertainty via self-consistency sampling.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

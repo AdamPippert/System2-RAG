@@ -1,0 +1,27 @@
+ACME INDUSTRIES — SYNTHETIC EARNINGS SUMMARY (FOR DEMO ONLY)
+Reporting currency: USD
+
+Q2 2025 highlights:
+- Revenue: $120.0M
+- Cost of revenue: $78.0M
+- Gross profit: $42.0M
+- Gross margin: 35.0%
+- Operating expenses: $28.0M
+- Operating income: $14.0M
+
+Q3 2025 highlights:
+- Revenue: $130.0M
+- Cost of revenue: $79.3M
+- Gross profit: $50.7M
+- Gross margin: 39.0%
+- Operating expenses: $29.5M
+- Operating income: $21.2M
+
+Commentary:
+In Q3 2025, revenue increased due to higher unit volume and improved price realization in the Enterprise segment.
+Cost of revenue decreased as a percentage of revenue, driven by supplier renegotiations and lower scrap rates.
+Operating expenses increased modestly due to expanded R&D headcount and customer success investments.
+
+Definitions:
+Gross margin = Gross profit / Revenue.
+Operating income = Gross profit - Operating expenses.

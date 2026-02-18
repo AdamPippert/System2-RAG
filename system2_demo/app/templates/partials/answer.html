@@ -1,0 +1,78 @@
+<section class="card">
+  <h3>Answer</h3>
+  <p>{{ pkg.answer }}</p>
+
+  <div class="grid">
+    <div>
+      <h4>Uncertainty</h4>
+      <p>
+        Status: <strong>{{ pkg.uncertainty.status }}</strong>
+      </p>
+      {% if pkg.uncertainty.status in ["stable", "uncertain"] %}
+        <ul>
+          <li>n runs: {{ pkg.uncertainty.n }}</li>
+          <li>mean: {{ "%.4f"|format(pkg.uncertainty.mean) }}</li>
+          <li>std: {{ "%.4f"|format(pkg.uncertainty.std) }}</li>
+          <li>cv: {{ "%.4f"|format(pkg.uncertainty.cv) }}</li>
+        </ul>
+        <details>
+          <summary>All sampled numeric values</summary>
+          <pre class="code">{{ pkg.uncertainty.all_values }}</pre>
+        </details>
+      {% else %}
+        <p class="muted">No numeric signal extracted from samples.</p>
+      {% endif %}
+    </div>
+
+    <div>
+      <h4>Critic verdict</h4>
+      <p>
+        Verdict: <strong>{{ pkg.critic.verdict }}</strong>
+      </p>
+      <details>
+        <summary>Critic issues</summary>
+        <pre class="code">{{ pkg.critic.issues }}</pre>
+      </details>
+      {% if pkg.critic.required_fixes %}
+        <p><strong>Required fixes</strong></p>
+        <ul>
+          {% for fix in pkg.critic.required_fixes %}
+            <li>{{ fix }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <h3>Verified citations</h3>
+  {% if pkg.claims|length == 0 %}
+    <p class="muted">No claims were produced.</p>
+  {% endif %}
+
+  {% for c in pkg.claims %}
+    <div class="claim">
+      <p><strong>{{ c.claim_id }}:</strong> {{ c.statement }}</p>
+      {% if c.evidence %}
+        {% for ev in c.evidence %}
+          <div class="evidence">
+            <div class="muted small">Source: {{ ev.source_id }} | Chunk: {{ ev.chunk_id }}</div>
+            <pre class="quote">{{ ev.quote }}</pre>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="muted">No evidence provided.</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <h3>Context chunks used</h3>
+  <details>
+    <summary>Show retrieved chunks</summary>
+    {% for ch in pkg.context_chunks %}
+      <div class="chunk">
+        <div class="muted small">[{{ ch.source_id }} | {{ ch.chunk_id }} | score={{ "%.3f"|format(ch.score) }}]</div>
+        <pre class="code">{{ ch.text }}</pre>
+      </div>
+    {% endfor %}
+  </details>
+</section>
